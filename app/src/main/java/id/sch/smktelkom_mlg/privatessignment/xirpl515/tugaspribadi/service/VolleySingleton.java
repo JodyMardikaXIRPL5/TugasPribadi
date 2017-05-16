@@ -2,8 +2,12 @@ package id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.service;
 
 import android.content.Context;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 /**
- * Created by Jody Mardika on 5/16/2017.
+ * Created by Jody Mardika on 5/14/2017.
  */
 
 public class VolleySingleton {
