@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.R;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.adapter.popularadapter;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.model.source;
-import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.model.sourcesresponse;
+import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.model.sourceresponse;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.service.GsonGetRequest;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.service.VolleySingleton;
 /**
@@ -58,11 +58,11 @@ public class popular_frag extends Fragment {
     private void downloadDataComing() {
         String url = "https://api.themoviedb.org/3/movie/popular?api_key=485c73486b9905807301e4a5f0985349";
 
-        GsonGetRequest<sourcesresponse> myRequest = new GsonGetRequest<sourcesresponse>
-                (url, sourcesresponse.class, null, new Response.Listener<sourcesresponse>() {
+        GsonGetRequest<sourceresponse> myRequest = new GsonGetRequest<sourceresponse>
+                (url, sourceresponse.class, null, new Response.Listener<sourceresponse>() {
 
                     @Override
-                    public void onResponse(sourcesresponse response) {
+                    public void onResponse(sourceresponse response) {
                         Log.d("FLOW", "onResponse: " + (new Gson().toJson(response)));
 
                         mList.addAll(response.results);
