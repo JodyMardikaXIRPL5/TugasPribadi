@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.MainActivity">
+    tools:context="id.sch.smktelkom_mlg.privateassignment.xirpl507.mymovie.MainActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
