@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Jody Mardika on 5/16/2017.
  */
 
-public class sourcesresponse {
+public class sourceresponse {
     public String page;
     public List<source> results;
 }
