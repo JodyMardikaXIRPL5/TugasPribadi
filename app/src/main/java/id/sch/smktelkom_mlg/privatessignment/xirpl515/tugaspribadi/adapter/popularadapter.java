@@ -22,19 +22,19 @@ import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.model.source;
 public class popularadapter extends RecyclerView.Adapter<popularadapter.ViewHolder> {
     public static final String IMAGE_URL_BASE_PATH = "http://image.tmdb.org/t/p/w500";
     ArrayList<source> list;
-    //    ISourceAdapter mISourceAdapter;
+    popularadapter.Ipopularadapter mIpopularadapter;
     Context context;
 
     public popularadapter(Context context, ArrayList<source> list) {
         this.list = list;
-//        mISourceAdapter = (SourceAdapter.ISourceAdapter) context;
+        mIpopularadapter = (popularadapter.Ipopularadapter) context;
         this.context = context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_list, parent, false);
+                .inflate(R.layout.list_item, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -42,8 +42,10 @@ public class popularadapter extends RecyclerView.Adapter<popularadapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         source source = list.get(position);
-        holder.tvJudul.setText(source.title);
+        holder.tvTitle.setText(source.title);
         holder.tvDesc.setText(source.overview);
+        holder.tvRelease.setText(source.release_date);
+        holder.tvRating.setText(source.vote_average);
         //holder.itemView.setBackgroundColor(source.color);
         Glide.with(context)
                 .load(IMAGE_URL_BASE_PATH + source.poster_path)
@@ -57,28 +59,35 @@ public class popularadapter extends RecyclerView.Adapter<popularadapter.ViewHold
         return 0;
     }
 
-//    public interface ISourceAdapter {
-//        void showArticles(String id, String name, String sortBy);
-//    }
+    public interface Ipopularadapter {
+        void showArticles(String poster_path, String overview, String release_date, String title, String backdrop_path, String vote_average, String original_language, String popularity, String vote_count);
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPoster;
-        TextView tvJudul;
+        TextView tvTitle;
         TextView tvDesc;
+        TextView tvRelease;
+        TextView tvRating;
+        TextView tvPopularity;
+        TextView tvVote;
+        TextView tvLanguage;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvJudul = (TextView) itemView.findViewById(R.id.textViewJudul);
-            tvDesc = (TextView) itemView.findViewById(R.id.textViewDeskripsi);
-            ivPoster = (ImageView) itemView.findViewById(R.id.imageView);
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Source source = list.get(getAdapterPosition());
-//                    List<String> sort = source.sortBysAvailable;
-//                    mISourceAdapter.showArticles(source.id, source.title, sort.get(sort.size() - 1));
-//                }
-//            });
+            ivPoster = (ImageView) itemView.findViewById(R.id.imageViewPoster);
+            tvTitle = (TextView) itemView.findViewById(R.id.textViewTitle);
+            tvDesc = (TextView) itemView.findViewById(R.id.textViewOverview);
+            tvRelease = (TextView) itemView.findViewById(R.id.textViewDate);
+            tvRating = (TextView) itemView.findViewById(R.id.textViewRating);
+            tvPopularity = (TextView) itemView.findViewById(R.id.VoteAverage);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    source source = list.get(getAdapterPosition());
+                    mIpopularadapter.showArticles(source.poster_path, source.overview, source.release_date, source.title, source.backdrop_path, source.vote_average, source.original_language, source.popularity, source.vote_count);
+                }
+            });
         }
     }
 }

@@ -7,16 +7,12 @@ package id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.model;
 public class source {
     public String poster_path;
     public String overview;
-    public String original_title;
-    public String original_language;
+    public String release_date;
     public String title;
     public String backdrop_path;
-    public Boolean adult;
-    public String release_date;
-    public Boolean video;
-    public int id;
-    public Double popularity;
-    public Double vote_count;
-    public Double vote_average;
+    public String vote_average;
+    public String original_language;
+    public String popularity;
+    public String vote_count;
 
 }

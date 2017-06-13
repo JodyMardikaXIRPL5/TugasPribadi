@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.R;
-import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.adapter.upcomingadapter;
+import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.adapter.popularadapter;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.model.source;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.model.sourceresponse;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.service.GsonGetRequest;
@@ -30,7 +30,7 @@ import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.service.Volle
 public class upcoming_frag extends Fragment {
 
     ArrayList<source> mList = new ArrayList<>();
-    upcomingadapter mAdapter;
+    popularadapter mAdapter;
 
     public upcoming_frag() {
         // Required empty public constructor
@@ -50,7 +50,7 @@ public class upcoming_frag extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView2);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-        mAdapter = new upcomingadapter(this.getActivity(), mList);
+        mAdapter = new popularadapter(this.getActivity(), mList);
         recyclerView.setAdapter(mAdapter);
 
         downloadDataComing();

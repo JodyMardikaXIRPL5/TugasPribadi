@@ -1,5 +1,6 @@
 package id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,11 +15,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.adapter.popularadapter;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.fragment.popular_frag;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.fragment.toprated_frag;
 import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.fragment.upcoming_frag;
+import id.sch.smktelkom_mlg.privatessignment.xirpl515.tugaspribadi.sugar.FavoriteFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements popularadapter.Ipopularadapter {
+
+    public static final String RESULTPOSTER = "resultPoster";
+    public static final String RESULTOVER = "resultOverview";
+    public static final String RESULTRELEASE = "resultRelease";
+    public static final String RESULTTITLE = "resultTitle";
+    public static final String RESULTBACK = "resultBackdrop";
+    public static final String RESULTVOTE = "resultOver";
+    public static final String RESULTLANGUAGE = "resultLanguage";
+    public static final String RESULTPOPULARITY = "resultPopularity";
+    public static final String RESULTVOTECOUNT = "resultVote";
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -61,6 +74,21 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public void showArticles(String poster_path, String overview, String release_date, String title, String backdrop_path, String vote_average, String original_language, String popularity, String vote_count) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(RESULTPOSTER, poster_path);
+        intent.putExtra(RESULTOVER, overview);
+        intent.putExtra(RESULTRELEASE, release_date);
+        intent.putExtra(RESULTTITLE, title);
+        intent.putExtra(RESULTBACK, backdrop_path);
+        intent.putExtra(RESULTVOTE, vote_average);
+        intent.putExtra(RESULTLANGUAGE, original_language);
+        intent.putExtra(RESULTPOPULARITY, popularity);
+        intent.putExtra(RESULTVOTECOUNT, vote_count);
+        startActivity(intent);
     }
 
 
@@ -119,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 return new toprated_frag();
             else if (position == 2)
                 return new upcoming_frag();
+            else if (position == 3)
+                return new FavoriteFragment();
             else
                 return PlaceholderFragment.newInstance(position + 1);
         }
@@ -126,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -138,6 +168,8 @@ public class MainActivity extends AppCompatActivity {
                     return "Top Rated";
                 case 2:
                     return "Upcoming";
+                case 3:
+                    return "Favorite";
             }
             return null;
         }
